@@ -2,10 +2,6 @@ package addDimension
 
 import (
 	"fmt"
-	"image"
-	_ "image/jpeg"
-	"log"
-	"os"
 	"testing"
 
 	"github.com/project-flogo/core/activity"
@@ -22,19 +18,13 @@ func TestRegister(t *testing.T) {
 }
 
 func TestEval(t *testing.T) {
-	fmt.Println("GETS HERE")
-	f, err := os.Open("/Users/avanderg@tibco.com/working/image_recog_hands_on/IMG_20190214_152236108.jpg")
-	if err != nil {
-		log.Fatal("trouble loading test file")
-	}
-	pic, _, err := image.Decode(f)
-	src := pic.(image.Image)
+	// fmt.Println("GETS HERE")
 
 	// iCtx := test.NewActivityInitContext(nil, nil)
 	// act, err := New(iCtx)
 	act := &Activity{}
-	assert.Nil(t, err)
-	input := &Input{Image: src}
+	// assert.Nil(t, err)
+	input := &Input{Data: []float64{1.1, 2.1}}
 	tc := test.NewActivityContext(act.Metadata())
 
 	tc.SetInputObject(input)
@@ -45,5 +35,5 @@ func TestEval(t *testing.T) {
 
 	output := &Output{}
 	tc.GetOutputObject(output)
-	// fmt.Println(output.ResizedImage)
+	fmt.Println(output.Output)
 }

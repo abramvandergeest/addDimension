@@ -2,12 +2,12 @@
   "name": "addDimension",
   "type": "flogo:activity",
   "version": "0.0.1",
-  "title": "preprocessImage",
-  "description": "preprocessImage",
+  "title": "addDimension",
+  "description": "adds a bracket arround some input data",
   "homepage": "https://github.com/project-flogo/tree/master/examples/activity",
   "input": [
     {
-      "name": "image",
+      "name": "data",
       "type": "any",
       "required": true
     }

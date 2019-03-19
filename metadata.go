@@ -1,36 +1,32 @@
 package addDimension
 
-import (
-	"image"
-)
-
 // type Settings struct {
 // 	ASetting string `md:"aSetting,required"`
 // }
 
 type Input struct {
-	Image image.Image `md:"image"`
+	Data interface{} `md:"data"`
 }
 
 func (r *Input) FromMap(values map[string]interface{}) error {
 	// strVal, _ := coerce.ToString(values["anInput"])
-	r.Image = values["image"].(image.Image)
+	r.Data = values["data"]
 	return nil
 }
 
 func (r *Input) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"image": r.Image,
+		"data": r.Data,
 	}
 }
 
 type Output struct {
-	Output interface{} `md:"output"`
+	Output []interface{} `md:"output"`
 }
 
 func (o *Output) FromMap(values map[string]interface{}) error {
 	// strVal, _ := coerce.ToString()
-	o.Output = values["output"]
+	o.Output = values["output"].([]interface{})
 	return nil
 }
 

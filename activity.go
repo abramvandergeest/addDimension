@@ -28,46 +28,11 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 		return true, err
 	}
 
-	ctx.Logger().Info("Input: Image here.")
+	d := input.Data
+	var outd []interface{}
+	outd = append(outd, d)
 
-	src := input.Image
-	batchsize := 1
-
-	bounds := src.Bounds()
-	w, h := bounds.Max.X, bounds.Max.Y
-
-	// //Converting Image to array
-	var img [][][][]uint8
-	for j := 0; j < batchsize; j++ {
-		var batch [][][]uint8
-		for x := 0; x < w; x++ {
-			var row [][]uint8
-			for y := 0; y < h; y++ {
-				var col []uint8
-				for i := 0; i < 3; i++ {
-					col = append(col, 0)
-				}
-
-				row = append(row, col)
-			}
-			batch = append(batch, row)
-		}
-		img = append(img, batch)
-	}
-
-	for x := 0; x < w; x++ {
-		for y := 0; y < h; y++ {
-			imageColor := src.At(x, y)
-			rr, bb, gg, _ := imageColor.RGBA()
-			color := []uint8{uint8(rr / 256), uint8(bb / 255), uint8(gg / 256)}
-			for i := 0; i < 3; i++ {
-				img[0][x][y][i] = color[i]
-			}
-
-		}
-	}
-
-	output := &Output{Output: img}
+	output := &Output{Output: outd}
 	err = ctx.SetOutputObject(output)
 	if err != nil {
 		return true, err
