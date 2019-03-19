@@ -1,0 +1,21 @@
+{
+  "name": "addDimension",
+  "type": "flogo:activity",
+  "version": "0.0.1",
+  "title": "preprocessImage",
+  "description": "preprocessImage",
+  "homepage": "https://github.com/project-flogo/tree/master/examples/activity",
+  "input": [
+    {
+      "name": "image",
+      "type": "any",
+      "required": true
+    }
+  ],
+  "output": [
+    {
+      "name": "output",
+      "type": "array"
+    }
+  ]
+}
