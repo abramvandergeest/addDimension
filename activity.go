@@ -1,6 +1,8 @@
 package addDimension
 
 import (
+	"fmt"
+
 	"github.com/project-flogo/core/activity"
 )
 
@@ -29,8 +31,14 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 	}
 
 	d := input.Data
-	var outd []interface{}
-	outd = append(outd, d)
+	fmt.Println("BLAH@@@@@@@", d)
+	fmt.Printf("%T\n", d)
+	var outd [][]float64
+	var interm []float64
+	for _, val := range d.([]interface{}) {
+		interm = append(interm, val.(float64))
+	}
+	outd = append(outd, interm)
 
 	output := &Output{Output: outd}
 	err = ctx.SetOutputObject(output)

@@ -21,12 +21,12 @@ func (r *Input) ToMap() map[string]interface{} {
 }
 
 type Output struct {
-	Output []interface{} `md:"output"`
+	Output [][]float64 `md:"output"`
 }
 
 func (o *Output) FromMap(values map[string]interface{}) error {
 	// strVal, _ := coerce.ToString()
-	o.Output = values["output"].([]interface{})
+	o.Output = values["output"].([][]float64)
 	return nil
 }
 
